@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="flex items-center justify-center mb-6">
             <BrandWordmark className="text-2xl sm:text-3xl md:text-4xl" />
           </div>
-          <p className="text-sm text-orange-500 uppercase tracking-wider">Digital Solutions</p>
+          <p className="text-sm text-orange-500 uppercase tracking-wider">Marketplace</p>
         </div>
 
         {/* Contact Info */}
@@ -37,7 +37,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-            <p>Copyright © 2026 phoanan. All Rights Reserved.</p>
+            <p>Copyright © 2026 Pricerite Marketplace. All Rights Reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="/privacy" className="text-orange-500 hover:text-orange-400 transition">
                 Privacy Policy
