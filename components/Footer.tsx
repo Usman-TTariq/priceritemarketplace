@@ -37,7 +37,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-            <p>Copyright © 2026 issbah-aairah. All Rights Reserved.</p>
+            <p>Copyright © 2026 phoanan. All Rights Reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="/privacy" className="text-orange-500 hover:text-orange-400 transition">
                 Privacy Policy

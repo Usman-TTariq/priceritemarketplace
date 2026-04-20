@@ -84,7 +84,7 @@ export default function Navbar() {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }
               }}
-              aria-label="issbah-aairah — scroll to top"
+              aria-label="phoanan — scroll to top"
             >
               <BrandWordmark className="text-xl sm:text-2xl md:text-3xl" />
             </div>
@@ -92,7 +92,7 @@ export default function Navbar() {
             <Link
               href="/"
               className="flex items-center flex-shrink-0 py-1 hover:opacity-90 transition-opacity"
-              aria-label="issbah-aairah — home"
+              aria-label="phoanan — home"
             >
               <BrandWordmark className="text-xl sm:text-2xl md:text-3xl" />
             </Link>
