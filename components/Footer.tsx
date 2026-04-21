@@ -26,7 +26,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center space-x-2">
             <span className="text-orange-500">📧</span>
-            <span>info@issbah-aairah.com</span>
+            <span>info@priceritemarketplace.com</span>
           </div>
           <div className="flex items-center space-x-2">
             <span className="text-orange-500">📱</span>

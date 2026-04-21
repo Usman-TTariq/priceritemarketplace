@@ -130,7 +130,7 @@ export default function ContactPage() {
           <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
             <div className="aspect-video w-full">
               <iframe
-                title="Earnytics LLC - 734 S Charlotte St, Lombard, IL 60148"
+                title="priceritemarketplace - 734 S Charlotte St, Lombard, IL 60148"
                 src="https://maps.google.com/maps?q=734+S+Charlotte+St,+Lombard,+IL+60148&z=15&output=embed"
                 className="w-full h-full border-0"
                 allowFullScreen
