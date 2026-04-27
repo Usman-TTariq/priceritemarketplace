@@ -6,7 +6,7 @@ export default function PrivacyPage() {
     <div className="min-h-screen bg-[#f8f9ff] text-[#0b1c30]">
       <Navbar />
 
-      <div className="bg-[#00081e] py-16 pt-28 text-white md:py-20">
+      <div className="bg-[#00081e] py-16 !pt-[200px] text-white md:py-20">
         <div className="mx-auto max-w-7xl px-8 text-center">
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">Privacy Policy</h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-300">

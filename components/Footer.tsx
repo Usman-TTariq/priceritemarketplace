@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-8 md:grid-cols-4">
         <div>
           <div className="mb-6 text-[14px] font-bold uppercase tracking-widest text-white">
-            PricerItemMarketplace.us
+            PriceRiteMarketplace.us
           </div>
           <p className="mb-8 text-slate-400">
             Elevating global brands through strategic digital engineering and premium creative design
@@ -98,7 +98,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="mx-auto mt-12 max-w-7xl border-t border-white/5 px-8 pt-8 text-center text-slate-500">
-        © 2026 PricerItemMarketplace.us. All rights reserved.
+        © 2026 PriceRiteMarketplace.us. All rights reserved.
       </div>
     </footer>
   );

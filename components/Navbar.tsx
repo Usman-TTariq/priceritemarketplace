@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import RequestQuoteModal from "./RequestQuoteModal";
 
 const navItems: { label: string; hash: string }[] = [
   { label: "Services", hash: "#services" },
@@ -15,16 +16,18 @@ const navItems: { label: string; hash: string }[] = [
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [quoteOpen, setQuoteOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const closeQuote = useCallback(() => setQuoteOpen(false), []);
 
   useEffect(() => {
-    if (mobileOpen) document.body.style.overflow = "hidden";
+    if (mobileOpen || quoteOpen) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [mobileOpen]);
+  }, [mobileOpen, quoteOpen]);
 
   const hrefFor = (hash: string) => (isHome ? hash : `/${hash}`);
 
@@ -85,12 +88,13 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/contact"
+          <button
+            type="button"
+            onClick={() => setQuoteOpen(true)}
             className="hidden rounded-full bg-[#0a1f44] px-5 py-2.5 text-sm font-semibold text-white transition-transform active:scale-95 sm:inline-block"
           >
             Request a Quote
-          </Link>
+          </button>
           <button
             type="button"
             className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-900 md:hidden"
@@ -131,16 +135,21 @@ export default function Navbar() {
                 </Link>
               )
             )}
-            <Link
-              href="/contact"
+            <button
+              type="button"
               className="mt-2 rounded-full bg-[#0a1f44] py-3 text-center font-semibold text-white"
-              onClick={() => setMobileOpen(false)}
+              onClick={() => {
+                setMobileOpen(false);
+                setQuoteOpen(true);
+              }}
             >
               Request a Quote
-            </Link>
+            </button>
           </div>
         </div>
       )}
+
+      <RequestQuoteModal isOpen={quoteOpen} onClose={closeQuote} />
     </nav>
   );
 }

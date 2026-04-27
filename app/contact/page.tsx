@@ -7,7 +7,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[#f8f9ff] text-[#0b1c30]">
       <Navbar />
 
-      <div className="bg-[#00081e] py-16 pt-28 text-white md:py-20">
+      <div className="bg-[#00081e] py-16 !pt-[200px] text-white md:py-20">
         <div className="mx-auto max-w-7xl px-8 text-center">
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Get In Touch</h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-300">
@@ -47,10 +47,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="mb-1 font-semibold text-[#00081e]">Email Us</h3>
                     <a
-                      href="mailto:info@priceritemarketplace.us"
+                      href="mailto:info@priceritemarketplace.com"
                       className="font-medium text-[#5080ff] hover:underline"
                     >
-                      info@priceritemarketplace.us
+                      info@priceritemarketplace.com
                     </a>
                   </div>
                 </div>

@@ -3,7 +3,7 @@ const fillStar = { fontVariationSettings: "'FILL' 1" as const };
 const testimonials = [
   {
     quote:
-      "The team at PricerItemMarketplace.us transformed our legacy systems into a modern digital powerhouse. Their technical acumen is unmatched.",
+      "The team at PriceRiteMarketplace.us transformed our legacy systems into a modern digital powerhouse. Their technical acumen is unmatched.",
     name: "Sarah Jenkins",
     role: "CTO, VANTAGE GROUP",
     img: "https://lh3.googleusercontent.com/aida-public/AB6AXuALC9VfTzs-S2RlIdlmOXobugjsiNGmCaEaERWZndfa-19VtoUf4jLCRAo4C3JhBPw71CAsVGMS6TE0TPwmDP_lPExhS39qsHRxTySTsR0oMYaUrMcFvke9Dlv5V6FUzPfDbOgf2-MTkJlJZRT_vRFYoB0cUJXWAmFtOxpMZfwTzZ8E5oM2luyYzbJsEaCgrmQtgu0iPgzl-WFsApKBeHwDQekZ3mXofnPHXnmuQrkPRppT-zWkEwhNe97eNTvGaplWeqZKWrwTF28",
