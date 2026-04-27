@@ -3,14 +3,13 @@ import Footer from "@/components/Footer";
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f8f9ff] text-[#0b1c30]">
       <Navbar />
-      
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-navy-900 to-navy-800 text-white py-20 mt-20">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-5xl font-bold mb-4">Terms & Conditions</h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+
+      <div className="bg-[#00081e] py-16 pt-28 text-white md:py-20">
+        <div className="mx-auto max-w-7xl px-8 text-center">
+          <h1 className="mb-4 text-4xl font-bold md:text-5xl">Terms & Conditions</h1>
+          <p className="mx-auto max-w-2xl text-lg text-slate-300">
             Last Updated: February 17, 2026
           </p>
         </div>

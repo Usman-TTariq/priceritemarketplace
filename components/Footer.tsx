@@ -1,75 +1,105 @@
 "use client";
 
-import BrandWordmark from "./BrandWordmark";
+import Link from "next/link";
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <footer className="bg-gradient-to-br from-navy-900 to-navy-800 text-white py-12">
-      <div className="container mx-auto px-6">
-        {/* Logo Section */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center mb-6">
-            <BrandWordmark className="text-2xl sm:text-3xl md:text-4xl" />
+    <footer className="w-full border-t border-slate-800 bg-slate-900 py-12 text-sm text-white antialiased">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-8 md:grid-cols-4">
+        <div>
+          <div className="mb-6 text-lg font-bold uppercase tracking-widest text-white">
+            PricerItemMarketplace.us
           </div>
-          <p className="text-sm text-orange-500 uppercase tracking-wider">Marketplace</p>
-        </div>
-
-        {/* Contact Info */}
-        <div className="flex flex-wrap justify-center items-center gap-8 mb-8 text-sm text-gray-300">
-          <div className="flex items-center space-x-2">
-            <span className="text-orange-500">📍</span>
-            <span>734 S Charlotte St, Lombard, IL 60148</span>    
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-orange-500">📧</span>
-            <span>info@priceritemarketplace.com</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-orange-500">📱</span>
-            <span>+1 (847) 208-7685</span>
+          <p className="mb-8 text-slate-400">
+            Elevating global brands through strategic digital engineering and premium creative design
+            solutions.
+          </p>
+          <div className="flex gap-4">
+            <span className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
+              <span className="material-symbols-outlined text-sm">link</span>
+            </span>
+            <span className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
+              <span className="material-symbols-outlined text-sm">share</span>
+            </span>
           </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-6">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-            <p>Copyright © 2026 Pricerite Marketplace. All Rights Reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="/privacy" className="text-orange-500 hover:text-orange-400 transition">
+        <div>
+          <h5 className="mb-6 font-semibold uppercase tracking-wider text-white">Services</h5>
+          <ul className="space-y-4">
+            <li>
+              <Link href="/#services" className="text-slate-400 transition-colors hover:text-white">
+                Web Development
+              </Link>
+            </li>
+            <li>
+              <Link href="/#services" className="text-slate-400 transition-colors hover:text-white">
+                App Development
+              </Link>
+            </li>
+            <li>
+              <Link href="/#services" className="text-slate-400 transition-colors hover:text-white">
+                Digital Marketing
+              </Link>
+            </li>
+            <li>
+              <Link href="/#services" className="text-slate-400 transition-colors hover:text-white">
+                UI/UX Design
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h5 className="mb-6 font-semibold uppercase tracking-wider text-white">Company</h5>
+          <ul className="space-y-4">
+            <li>
+              <Link href="/#about" className="text-slate-400 transition-colors hover:text-white">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link href="/#portfolio" className="text-slate-400 transition-colors hover:text-white">
+                Portfolio
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="text-slate-400 transition-colors hover:text-white">
                 Privacy Policy
-              </a>
-              <a href="/terms" className="text-orange-500 hover:text-orange-400 transition">
-                Terms & Conditions
-              </a>
-            </div>
-          </div>
+              </Link>
+            </li>
+            <li>
+              <Link href="/terms" className="text-slate-400 transition-colors hover:text-white">
+                Terms of Service
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h5 className="mb-6 font-semibold uppercase tracking-wider text-white">Newsletter</h5>
+          <p className="mb-4 text-slate-400">Stay updated with our latest insights.</p>
+          <form
+            className="flex gap-2"
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder:text-slate-500 focus:border-white/30 focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="shrink-0 rounded-lg bg-white p-2 text-black"
+              aria-label="Subscribe"
+            >
+              <span className="material-symbols-outlined">send</span>
+            </button>
+          </form>
         </div>
       </div>
-
-      {/* Back to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-orange-500 hover:bg-orange-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 z-50"
-        aria-label="Scroll to top"
-      >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 10l7-7m0 0l7 7m-7-7v18"
-          />
-        </svg>
-      </button>
+      <div className="mx-auto mt-12 max-w-7xl border-t border-white/5 px-8 pt-8 text-center text-slate-500">
+        © 2026 PricerItemMarketplace.us. All rights reserved.
+      </div>
     </footer>
   );
 }

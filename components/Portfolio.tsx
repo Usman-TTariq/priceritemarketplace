@@ -1,103 +1,67 @@
-import Image from "next/image";
+const P1 =
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuAjF4ua8mGaeFdBdNB1t5Gbf0b4eM49XFYGK_v5mlSzWzhUMv8tRjg3vvTtB93nhFXKn-qLMvSloBE52gPSxKSKvvRbw0MW68ntr9SmMb2uS5iGUOknj5Wc4iUvtzo6bN663AzfVUP15KKY2mhNGDMEbKn7YP5OkTpzoEIIbMSId7Eg0prM8tPRC0-ujYfGubKWtK8vvmaD9gaZUbkMumSx5aZRAC2AJwiD2HL1EmEa0NT-WAe-D2kVT40kuCajd-2TosL1loYm9BA";
+const P2 =
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuBwGEuH-Jyu-MyEvyV_QSX1dbfAVqhjWhzV2zaV2OjAsVajReDJaUcvagTOeLBsQubfdkc5UjMfYgmdArT4bdfSW_RAmkl8-0EpuJnMQUg2sRixLxDDuJp0ESfxXoYv3Jhf6j98BmDBOycc1f-cjFXDeHjTujFmS0mDBvyKjDVj8si72P66IWLIdMcr3oARxlLONwBuzRDiObsOVbFsEd4VoZPr95U0pNCis8NeUSyirYMt8Zral4hL1qJpOHfV3dIq4imXkcz9OPA";
 
 export default function Portfolio() {
-  const portfolioItems = [
-    {
-      category: "E-Commerce Platform",
-      gradient: "from-purple-600 via-pink-600 to-red-600",
-      iconImage: "/images/Ecommerce.png",
-      bgImage: "/images/Ecommerce.jpg",
-      description: "Modern online shopping experience with seamless checkout"
-    },
-    {
-      category: "Business Dashboard",
-      gradient: "from-blue-600 via-cyan-600 to-teal-600",
-      iconImage: "/images/Dashboard.png",
-      bgImage: "/images/istockphoto-1488294044-612x612.jpg",
-      description: "Real-time analytics and data visualization platform"
-    },
-    {
-      category: "Mobile Application",
-      gradient: "from-orange-600 via-red-600 to-pink-600",
-      iconImage: "/images/Mobile application.png",
-      bgImage: "/images/360_F_900653724_MPXCtoE2xAi5ME5BRQrriIIKTv0X9dkV.jpg",
-      description: "Cross-platform mobile app with intuitive user interface"
-    }
-  ];
-
   return (
-    <section id="portfolio" className="py-20 bg-gradient-to-br from-navy-900 to-navy-800 text-white scroll-mt-20">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="text-orange-500 text-sm font-medium mb-2 uppercase tracking-wide">
-            What We&apos;ve Built
-          </p>
-          <h2 className="text-4xl font-bold mb-4">Our Portfolio</h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Explore our diverse range of successful projects across different industries and technologies
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioItems.map((item, index) => (
-            <div 
-              key={index}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-orange-500 transition-all duration-300 hover:shadow-2xl hover:scale-105"
-            >
-              {/* Gradient or Image Background with Icon */}
-              <div
-                className={`aspect-[4/3] relative overflow-hidden ${!("bgImage" in item && item.bgImage) ? `bg-gradient-to-br ${item.gradient}` : ""}`}
-                style={"bgImage" in item && item.bgImage ? { backgroundImage: `url(${item.bgImage})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
-              >
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300"></div>
-                {/* Small circular icon - left corner */}
-                <div className="absolute top-4 left-4 z-10 w-14 h-14 rounded-full bg-white/25 backdrop-blur-md flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Image
-                    src={item.iconImage}
-                    alt={item.category}
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 object-contain"
-                  />
-                </div>
-                {/* Category label - left side below icon */}
-                <div className="absolute top-20 left-4 z-10">
-                  <div className="bg-white/20 backdrop-blur-md rounded-lg px-3 py-1.5 inline-block">
-                    <p className="text-white font-semibold text-sm">{item.category}</p>
-                  </div>
-                </div>
-                
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8">
-                  <a
-                    href="#pricing"
-                    className="inline-flex items-center bg-white text-gray-900 px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:bg-orange-500 hover:text-white"
-                  >
-                    View Details →
-                  </a>
-                </div>
-
-                {/* Decorative Elements */}
-                <div className="absolute top-4 right-4 w-20 h-20 bg-white/10 rounded-full blur-2xl"></div>
-                <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-              </div>
-              
-              {/* Info */}
-              <div className="p-6 bg-gradient-to-br from-white/5 to-transparent">
-                <p className="text-gray-300 text-sm leading-relaxed">{item.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA Section */}
-        <div className="text-center mt-16">
-          <p className="text-gray-300 mb-6">Ready to bring your vision to life?</p>
-          <a href="/contact">
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-              Start Your Project Today
-            </button>
+    <section id="portfolio" className="bg-[#00081e] py-16 text-white scroll-mt-24 lg:py-24">
+      <div className="mx-auto max-w-7xl px-8">
+        <div className="mb-16 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">Portfolio Showcase</h2>
+            <p className="text-slate-400">Selected works that define our commitment to quality.</p>
+          </div>
+          <a
+            href="#portfolio"
+            className="inline-flex shrink-0 items-center justify-center rounded-lg border border-white/20 px-6 py-3 font-bold transition-all hover:bg-white/10"
+          >
+            View All Work
           </a>
+        </div>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="group relative overflow-hidden rounded-2xl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={P1}
+              alt="SaaS Dashboard Interface"
+              className="h-[400px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#00081e] via-transparent to-transparent opacity-90" />
+            <div className="absolute bottom-0 left-0 w-full translate-y-4 p-8 transition-all duration-300 group-hover:translate-y-0">
+              <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#5080ff]">
+                Web Development
+              </p>
+              <h3 className="mb-4 text-2xl font-bold">Enterprise SaaS Dashboard &amp; Analytics</h3>
+              <button
+                type="button"
+                className="rounded-lg bg-white px-4 py-2 text-sm font-bold text-[#00081e] opacity-0 transition-opacity group-hover:opacity-100"
+              >
+                View Case Study
+              </button>
+            </div>
+          </div>
+          <div className="group relative overflow-hidden rounded-2xl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={P2}
+              alt="Mobile App Interface"
+              className="h-[400px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#00081e] via-transparent to-transparent opacity-90" />
+            <div className="absolute bottom-0 left-0 w-full translate-y-4 p-8 transition-all duration-300 group-hover:translate-y-0">
+              <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#5080ff]">
+                App Development
+              </p>
+              <h3 className="mb-4 text-2xl font-bold">Next-Gen Fintech Mobile Application</h3>
+              <button
+                type="button"
+                className="rounded-lg bg-white px-4 py-2 text-sm font-bold text-[#00081e] opacity-0 transition-opacity group-hover:opacity-100"
+              >
+                View Case Study
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

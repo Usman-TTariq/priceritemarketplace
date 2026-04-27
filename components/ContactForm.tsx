@@ -57,7 +57,7 @@ export default function ContactForm() {
           placeholder="John Doe"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-gray-900"
+          className="w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 transition-colors focus:border-[#5080ff] focus:outline-none"
           required
         />
       </div>
@@ -71,7 +71,7 @@ export default function ContactForm() {
           placeholder="john@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-gray-900"
+          className="w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 transition-colors focus:border-[#5080ff] focus:outline-none"
           required
         />
       </div>
@@ -85,7 +85,7 @@ export default function ContactForm() {
           placeholder="+1 (555) 123-4567"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-gray-900"
+          className="w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 transition-colors focus:border-[#5080ff] focus:outline-none"
         />
       </div>
 
@@ -96,7 +96,7 @@ export default function ContactForm() {
         <select
           value={service}
           onChange={(e) => setService(e.target.value)}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-gray-600"
+          className="w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-600 transition-colors focus:border-[#5080ff] focus:outline-none"
         >
           <option value="">Select a service</option>
           <option value="Website Design">Website Design</option>
@@ -117,7 +117,7 @@ export default function ContactForm() {
           placeholder="Tell us about your project..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors resize-none text-gray-900"
+          className="w-full resize-none rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 transition-colors focus:border-[#5080ff] focus:outline-none"
           required
         />
       </div>
@@ -136,7 +136,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 rounded-xl font-semibold text-lg hover:from-orange-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-70 disabled:pointer-events-none"
+        className="w-full rounded-xl bg-[#00081e] py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-slate-800 hover:shadow-xl disabled:pointer-events-none disabled:opacity-70"
       >
         {status === "sending" ? "Sending..." : "Send Message 🚀"}
       </button>
