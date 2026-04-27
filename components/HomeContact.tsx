@@ -60,7 +60,7 @@ export default function HomeContact() {
                 <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">
                   Email Us
                 </p>
-                <p className="text-lg font-bold text-[#00081e]">hello@priceritemarketplace.us</p>
+                <p className="text-lg font-bold text-[#00081e]">info@priceritemarketplace.us</p>
               </div>
             </div>
             <div className="flex items-start gap-6">
@@ -72,10 +72,10 @@ export default function HomeContact() {
                   Call Us
                 </p>
                 <a
-                  href="tel:+15551234567"
+                  href="tel:+17101523005"
                   className="text-lg font-bold text-[#00081e] hover:text-[#5080ff]"
                 >
-                  +1 (555) 123-4567
+                  (710) 152-3005
                 </a>
               </div>
             </div>
@@ -88,7 +88,9 @@ export default function HomeContact() {
                   Visit Us
                 </p>
                 <p className="text-lg font-bold text-[#00081e]">
-                  123 Agency Plaza, Tech District, NY
+                  325 Valley St
+                  <br />
+                  Providence, RI 02908
                 </p>
               </div>
             </div>

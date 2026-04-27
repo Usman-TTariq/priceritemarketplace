@@ -7,21 +7,21 @@ export default function Footer() {
     <footer className="w-full border-t border-slate-800 bg-slate-900 py-12 text-sm text-white antialiased">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-8 md:grid-cols-4">
         <div>
-          <div className="mb-6 text-lg font-bold uppercase tracking-widest text-white">
+          <div className="mb-6 text-[14px] font-bold uppercase tracking-widest text-white">
             PricerItemMarketplace.us
           </div>
           <p className="mb-8 text-slate-400">
             Elevating global brands through strategic digital engineering and premium creative design
             solutions.
           </p>
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <span className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
               <span className="material-symbols-outlined text-sm">link</span>
             </span>
             <span className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
               <span className="material-symbols-outlined text-sm">share</span>
             </span>
-          </div>
+          </div> */}
         </div>
         <div>
           <h5 className="mb-6 font-semibold uppercase tracking-wider text-white">Services</h5>

@@ -128,8 +128,8 @@ export default function TermsPage() {
             </p>
             <div className="bg-gray-50 rounded-xl p-6">
               <p className="text-gray-700 mb-2"><strong>Email:</strong> info@priceritemarketplace.com</p>
-              <p className="text-gray-700 mb-2"><strong>Phone:</strong> +1 (347) 588-7791</p>
-              <p className="text-gray-700"><strong>Address:</strong> 3415 MCLAUGHLIN #107, LOS ANGELES, CA 90066</p>
+              <p className="text-gray-700 mb-2"><strong>Phone:</strong> (710) 152-3005</p>
+              <p className="text-gray-700"><strong>Address:</strong> 325 Valley St, Providence, RI 02908</p>
             </div>
           </section>
         </div>

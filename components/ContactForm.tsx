@@ -82,7 +82,7 @@ export default function ContactForm() {
         </label>
         <input
           type="tel"
-          placeholder="+1 (555) 123-4567"
+          placeholder="(710) 152-3005"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           className="w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 transition-colors focus:border-[#5080ff] focus:outline-none"

@@ -34,9 +34,9 @@ export default function ContactPage() {
                   <div>
                     <h3 className="mb-1 font-semibold text-[#00081e]">Our Office</h3>
                     <p className="text-slate-600">
-                      734 S Charlotte St
+                      325 Valley St
                       <br />
-                      Lombard, IL 60148
+                      Providence, RI 02908
                     </p>
                   </div>
                 </div>
@@ -47,10 +47,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="mb-1 font-semibold text-[#00081e]">Email Us</h3>
                     <a
-                      href="mailto:info@earnytics.com"
+                      href="mailto:info@priceritemarketplace.us"
                       className="font-medium text-[#5080ff] hover:underline"
                     >
-                      info@earnytics.com
+                      info@priceritemarketplace.us
                     </a>
                   </div>
                 </div>
@@ -61,10 +61,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="mb-1 font-semibold text-[#00081e]">Call Us</h3>
                     <a
-                      href="tel:+18472087685"
+                      href="tel:+17101523005"
                       className="font-medium text-[#5080ff] hover:underline"
                     >
-                      +1 (847) 208-7685
+                      (710) 152-3005
                     </a>
                   </div>
                 </div>
@@ -76,8 +76,8 @@ export default function ContactPage() {
         <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-xl">
           <div className="aspect-video w-full">
             <iframe
-              title="priceritemarketplace - 734 S Charlotte St, Lombard, IL 60148"
-              src="https://maps.google.com/maps?q=734+S+Charlotte+St,+Lombard,+IL+60148&z=15&output=embed"
+              title="priceritemarketplace - 325 Valley St, Providence, RI 02908"
+              src="https://maps.google.com/maps?q=325+Valley+St,+Providence,+RI+02908&z=15&output=embed"
               className="h-full w-full border-0"
               allowFullScreen
               loading="lazy"
@@ -85,7 +85,9 @@ export default function ContactPage() {
             />
           </div>
           <div className="border-t border-slate-100 p-4 text-center">
-            <p className="font-medium text-slate-600">734 S Charlotte St, Lombard, IL 60148</p>
+            <p className="font-medium text-slate-600">
+              325 Valley St, Providence, RI 02908
+            </p>
           </div>
         </div>
       </div>

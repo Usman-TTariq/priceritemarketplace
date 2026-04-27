@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -41,7 +42,8 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-8">
         <Link
           href="/"
-          className="text-lg font-black uppercase tracking-tighter text-slate-900 md:text-xl"
+          className="relative flex shrink-0 items-center py-1"
+          aria-label="PricerItemMarketplace.us — home"
           onClick={(e) => {
             if (isHome) {
               e.preventDefault();
@@ -49,7 +51,14 @@ export default function Navbar() {
             }
           }}
         >
-          PricerItemMarketplace.us
+          <Image
+            src="/images/logo1.png"
+            alt="PricerItemMarketplace.us"
+            width={220}
+            height={48}
+            className="h-8 w-auto object-contain object-left md:h-[60px]"
+            priority
+          />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
