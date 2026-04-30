@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { submitMarketingLead } from "@/lib/submit-marketing-lead";
 
 type RequestQuoteModalProps = {
   isOpen: boolean;
@@ -18,7 +19,7 @@ export default function RequestQuoteModal({ isOpen, onClose }: RequestQuoteModal
   const [phoneLocal, setPhoneLocal] = useState("");
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -44,41 +45,32 @@ export default function RequestQuoteModal({ isOpen, onClose }: RequestQuoteModal
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
     const phone = `${dialCode} ${phoneLocal}`.trim();
-    if (!phoneLocal.trim()) {
-      setStatus("error");
-      setErrorMessage("Please enter your phone number.");
+    if (!trimmedName || !trimmedEmail || !phoneLocal.trim()) {
+      setErrorMessage("Please fill in Full Name, Email, and Phone.");
       return;
     }
-    setStatus("sending");
     setErrorMessage("");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          service: company.trim() || undefined,
-          message,
-          source: "navbar_quote",
-        }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setStatus("error");
-        setErrorMessage(data.error || "Something went wrong. Please try again.");
-        return;
-      }
-      setStatus("success");
-      setTimeout(() => {
-        onClose();
-      }, 1600);
-    } catch {
-      setStatus("error");
-      setErrorMessage("Network error. Please try again.");
+    setStatus("sending");
+    const result = await submitMarketingLead({
+      name: trimmedName,
+      email: trimmedEmail,
+      phone,
+      service: company.trim() || undefined,
+      message: message.trim() || "(No project details)",
+      source: "popup",
+    });
+    setStatus("idle");
+    if (!result.ok) {
+      setErrorMessage(result.error || "Something went wrong.");
+      return;
     }
+    setStatus("success");
+    setTimeout(() => {
+      onClose();
+    }, 1200);
   };
 
   if (!isOpen || typeof document === "undefined") return null;
@@ -182,10 +174,9 @@ export default function RequestQuoteModal({ isOpen, onClose }: RequestQuoteModal
               className={inputClass}
             />
           </div>
-
           <div>
             <label className="mb-2 block text-sm font-bold text-white">
-              Tell us about your project <span className="text-red-500">*</span>
+              Tell us about your project
             </label>
             <textarea
               rows={4}
@@ -193,16 +184,15 @@ export default function RequestQuoteModal({ isOpen, onClose }: RequestQuoteModal
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className={`${inputClass} resize-none`}
-              required
             />
           </div>
 
-          {status === "error" && (
+          {errorMessage && (
             <p className="rounded-lg bg-red-950/50 px-4 py-2 text-sm text-red-300">{errorMessage}</p>
           )}
           {status === "success" && (
             <p className="rounded-lg bg-green-950/50 px-4 py-2 text-sm text-green-300">
-              Thanks! We&apos;ll be in touch shortly.
+              Thanks! We received your request at marketing@priceritemarketplace.us.
             </p>
           )}
 
@@ -219,7 +209,7 @@ export default function RequestQuoteModal({ isOpen, onClose }: RequestQuoteModal
               disabled={status === "sending"}
               className="rounded-full bg-orange-500 px-6 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(249,115,22,0.35)] transition-transform hover:bg-orange-600 disabled:opacity-60"
             >
-              {status === "sending" ? "Submitting..." : "Submit & Get a Callback"}
+              {status === "sending" ? "Sending…" : "Submit & Get a Callback"}
             </button>
           </div>
         </form>

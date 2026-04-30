@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { submitMarketingLead } from "@/lib/submit-marketing-lead";
 
 interface PopupModalProps {
   isOpen: boolean;
@@ -13,48 +14,52 @@ export default function PopupModal({ isOpen, onClose }: PopupModalProps) {
   const [phone, setPhone] = useState("");
   const [service, setService] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (!isOpen) return;
+    setStatus("idle");
+    setErrorMessage("");
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("sending");
-    setErrorMessage("");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          phone: phone || undefined,
-          service: service || undefined,
-          message,
-          source: "popup",
-        }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setStatus("error");
-        setErrorMessage(data.error || "Something went wrong. Please try again.");
-        return;
-      }
-      setStatus("success");
-      setName("");
-      setEmail("");
-      setPhone("");
-      setService("");
-      setMessage("");
-      setTimeout(() => {
-        onClose();
-        setStatus("idle");
-      }, 1500);
-    } catch {
-      setStatus("error");
-      setErrorMessage("Network error. Please try again.");
+    setStatus("idle");
+    const n = name.trim();
+    const em = email.trim();
+    const ph = phone.trim();
+    if (!n || !em || !ph) {
+      setErrorMessage("Full Name, Email, and Phone are required.");
+      return;
     }
+    setErrorMessage("");
+    setStatus("sending");
+    const result = await submitMarketingLead({
+      name: n,
+      email: em,
+      phone: ph,
+      service: service.trim() || undefined,
+      message: message.trim() || "(none)",
+      source: "popup",
+    });
+    setStatus("idle");
+    if (!result.ok) {
+      setErrorMessage(result.error || "Something went wrong.");
+      return;
+    }
+    setStatus("success");
+    setName("");
+    setEmail("");
+    setPhone("");
+    setService("");
+    setMessage("");
+    setTimeout(() => {
+      onClose();
+      setStatus("idle");
+    }, 1200);
   };
 
   return (
@@ -119,10 +124,11 @@ export default function PopupModal({ isOpen, onClose }: PopupModalProps) {
             <div>
               <input
                 type="tel"
-                placeholder="Phone Number (Optional)"
+                placeholder="Phone Number *"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 focus:outline-none transition-all text-sm text-gray-900"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-200"
+                required
               />
             </div>
 
@@ -154,23 +160,21 @@ export default function PopupModal({ isOpen, onClose }: PopupModalProps) {
               />
             </div>
 
-            {status === "error" && (
-              <p className="text-sm text-red-600 bg-red-50 px-4 py-2 rounded-lg">
-                {errorMessage}
-              </p>
+            {errorMessage && (
+              <p className="rounded-lg bg-red-50 px-4 py-2 text-sm text-red-600">{errorMessage}</p>
             )}
             {status === "success" && (
-              <p className="text-sm text-green-600 bg-green-50 px-4 py-2 rounded-lg">
-                Message sent! We&apos;ll get back to you soon.
+              <p className="rounded-lg bg-green-50 px-4 py-2 text-sm text-green-700">
+                Thanks! marketing@priceritemarketplace.us received your message.
               </p>
             )}
             {/* Submit Button */}
             <button
               type="submit"
               disabled={status === "sending"}
-              className="w-full bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:via-cyan-600 hover:to-teal-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] disabled:opacity-70 disabled:pointer-events-none"
+              className="w-full transform rounded-lg bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:from-blue-600 hover:via-cyan-600 hover:to-teal-600 hover:shadow-lg disabled:opacity-60"
             >
-              {status === "sending" ? "Sending..." : "Send Message ✉️"}
+              {status === "sending" ? "Sending…" : "Send Message ✉️"}
             </button>
 
             {/* Quick Info */}

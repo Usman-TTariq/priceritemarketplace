@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { submitMarketingLead } from "@/lib/submit-marketing-lead";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
@@ -8,48 +9,46 @@ export default function ContactForm() {
   const [phone, setPhone] = useState("");
   const [service, setService] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("sending");
-    setErrorMessage("");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          phone: phone || undefined,
-          service: service || undefined,
-          message,
-          source: "contact_page",
-        }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setStatus("error");
-        setErrorMessage(data.error || "Something went wrong. Please try again.");
-        return;
-      }
-      setStatus("success");
-      setName("");
-      setEmail("");
-      setPhone("");
-      setService("");
-      setMessage("");
-    } catch {
-      setStatus("error");
-      setErrorMessage("Network error. Please try again.");
+    setStatus("idle");
+    const n = name.trim();
+    const em = email.trim();
+    const ph = phone.trim();
+    if (!n || !em || !ph) {
+      setErrorMessage("Full Name, Email, and Phone are required.");
+      return;
     }
+    setErrorMessage("");
+    setStatus("sending");
+    const result = await submitMarketingLead({
+      name: n,
+      email: em,
+      phone: ph,
+      service: service.trim() || undefined,
+      message: message.trim() || "(none)",
+      source: "contact_desktop",
+    });
+    setStatus("idle");
+    if (!result.ok) {
+      setErrorMessage(result.error || "Something went wrong.");
+      return;
+    }
+    setStatus("success");
+    setName("");
+    setEmail("");
+    setPhone("");
+    setService("");
+    setMessage("");
   };
 
   return (
     <form className="space-y-6" onSubmit={handleSubmit}>
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
+        <label className="mb-2 block text-sm font-semibold text-gray-700">
           Full Name *
         </label>
         <input
@@ -63,7 +62,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
+        <label className="mb-2 block text-sm font-semibold text-gray-700">
           Email Address *
         </label>
         <input
@@ -77,8 +76,8 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
-          Phone Number
+        <label className="mb-2 block text-sm font-semibold text-gray-700">
+          Phone Number <span className="text-red-500">*</span>
         </label>
         <input
           type="tel"
@@ -86,11 +85,12 @@ export default function ContactForm() {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           className="w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 transition-colors focus:border-[#5080ff] focus:outline-none"
+          required
         />
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
+        <label className="mb-2 block text-sm font-semibold text-gray-700">
           Service Interested In
         </label>
         <select
@@ -109,8 +109,8 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
-          Your Message *
+        <label className="mb-2 block text-sm font-semibold text-gray-700">
+          Your Message <span className="text-red-500">*</span>
         </label>
         <textarea
           rows={5}
@@ -122,14 +122,12 @@ export default function ContactForm() {
         />
       </div>
 
-      {status === "error" && (
-        <p className="text-sm text-red-600 bg-red-50 px-4 py-2 rounded-xl">
-          {errorMessage}
-        </p>
+      {errorMessage && (
+        <p className="rounded-xl bg-red-50 px-4 py-2 text-sm text-red-600">{errorMessage}</p>
       )}
       {status === "success" && (
-        <p className="text-sm text-green-600 bg-green-50 px-4 py-2 rounded-xl">
-          Message sent! We&apos;ll get back to you soon.
+        <p className="rounded-xl bg-green-50 px-4 py-2 text-sm text-green-700">
+          Thanks! Your message was sent to marketing@priceritemarketplace.us. We will get back to you soon.
         </p>
       )}
 
@@ -138,7 +136,7 @@ export default function ContactForm() {
         disabled={status === "sending"}
         className="w-full rounded-xl bg-[#00081e] py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-slate-800 hover:shadow-xl disabled:pointer-events-none disabled:opacity-70"
       >
-        {status === "sending" ? "Sending..." : "Send Message 🚀"}
+        {status === "sending" ? "Sending…" : "Send Message 🚀"}
       </button>
     </form>
   );
